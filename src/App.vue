@@ -1,6 +1,14 @@
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.png" width="125" height="125" />
+    <div class="wrapper">
+      <nav> 
+        <RouterLink to="/a">A</RouterLink>
+        <RouterLink to="/b">B</RouterLink>
+        <RouterLink to="/c">C</RouterLink>
+      </nav>
+    </div>
+
+    <img alt="logo" class="logo" src="@/assets/logo.png" width="125" height="125" />
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
@@ -11,7 +19,6 @@
       </nav>
     </div>
   </header>
-  <el-input v-model="input" style="width: 240px" placeholder="Please input" />
   <RouterView />
 </template>
 
