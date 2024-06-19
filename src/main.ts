@@ -13,6 +13,8 @@ import Vant from 'vant';
 import { Lazyload } from 'vant';
 import { BackTop } from 'vant';
 import 'vant/lib/index.css';
+
+
 //引入createapp创建应用
 const app = createApp(App)
 

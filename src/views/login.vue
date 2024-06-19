@@ -14,9 +14,9 @@
 
   </header>
 
-  <div class="content">
+  <body style="position:fixed;">
     <div class="title">
-      <img class="logo" alt="logo" src="../assets/static/logo 1.png" />
+      <img alt="logo" src="../assets/static/logo 1.png" />
       <span class="welcome">：欢迎大驾光临 「日雀」迷因食堂</span>
     </div>
     <div class="choose">
@@ -34,7 +34,7 @@
          </van-cell-group>
       </div>
     </div>
-  </div>
+  </body>
 </template>
 
 <script setup lang="ts">
@@ -43,6 +43,8 @@ import { reactive, onMounted } from 'vue';
 import statusBar from '../components/statusBar.vue';
 import { ref } from 'vue';
 
+import { mapGetters, mapActions } from 'vuex'
+
 const props = defineProps({});
 
 const data = reactive({});
@@ -50,12 +52,15 @@ const data = reactive({});
 const router = useRouter();
 
 const onClickReturn = () =>{
-  router.back();
+  history.back();
 }
 
 let login = () => {
   console.log("account:"+account.value);
   console.log("password:"+password.value);
+  if(account.value=="test1"&&password.value=="123456"){
+    router.push('/home')
+  }
 }
 
 const account = ref('');

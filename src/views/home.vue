@@ -4,7 +4,7 @@
     <header style="width: 393px;height: 90px;flex-shrink: 0;background: #DC6683;box-shadow: 0px 0px 1px 0px rgba(0, 2, 0, 0.25);">
         <div style="height:40px">
             <img class="logo" alt="logo" src="../assets/static/logo 1.png" />
-            <span style="float:left;color: white;font-size: 20px;align-items: center;padding-top: 8px;">日雀食堂</span>
+            <span style="float:left;color: white;font-size: 20px;align-items: center;padding-top: 8px;">日雀迷因食堂</span>
         </div>
         <van-search
         v-model="searchvalue"
@@ -14,8 +14,7 @@
         />
     </header>
     <body>
-        <div class="exhibition">
-            <div class="swipe">
+        <div class="swipe">
                 <van-swipe class="swipe1" :autoplay="2000" indicator-color="white">
                     <van-swipe-item>
                         <van-cell-group inset>
@@ -61,6 +60,7 @@
                     </van-swipe-item>
                 </van-swipe>
             </div>
+        <div class="exhibition">
             <van-list
             v-model:loading="loading"
             :finished="finished"
@@ -83,19 +83,19 @@
     </body>
 
     <van-tabbar v-model="active" route style="width: 393px;">
-        <van-tabbar-item replace to="/home">
+        <van-tabbar-item to="/home">
             <span>首页</span>
             <template #icon="props">
             <img :src="props.active ? iconHome.active : iconHome.inactive" />
             </template>
         </van-tabbar-item>
-        <van-tabbar-item>
+        <van-tabbar-item to="/404">
             <span>商店</span>
             <template #icon="props">
             <img :src="props.active ? iconShop.active : iconShop.inactive" />
             </template>
         </van-tabbar-item>
-        <van-tabbar-item replace to="/login">
+        <van-tabbar-item to="/login">
             <span>我的</span>
             <template #icon="props">
             <img :src="props.active ? iconUser.active : iconUser.inactive" />
@@ -264,6 +264,6 @@
     :root:root {
         --van-tabbar-height:73px;
         --van-tabbar-item-active-color:#DC6683;
-        --van-search-input-height:22px;
+        --van-search-input-height:32px;
   }
 </style>
