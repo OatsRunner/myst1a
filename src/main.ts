@@ -8,6 +8,11 @@ import router from './router'
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+
+import Vant from 'vant';
+import { Lazyload } from 'vant';
+import { BackTop } from 'vant';
+import 'vant/lib/index.css';
 //引入createapp创建应用
 const app = createApp(App)
 
@@ -15,9 +20,17 @@ app.use(createPinia())
 //挂载路由
 app.use(router)
 
+app.use(Vant)
 app.use(ElementPlus)
+app.use(Lazyload);
+app.use(BackTop);
+
 
 app.mount('#app')
+
+app.use(Lazyload, {
+    lazyComponent: true,
+  });
 
 
 
