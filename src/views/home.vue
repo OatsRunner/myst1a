@@ -70,15 +70,15 @@
                 @load="onLoad"
                 >
                     <div class="water-fall">
-                        <div inset size="large" class="list_item" v-for="(item, index) of list" :key="index" 
+                        <van-cell size="large" class="list_item" v-for="(item, index) of list" :key="index" 
                         style="margin-bottom: 10px;
-                        border-radius: 4px;"
-                        >
-                        <van-image lazy-load :src="item.url" />
-                        <div class="item-title">{{ item.key }}</div>
-                        <div class="item-intro">{{ item.intro }}</div>
+                        border-radius: 8px;" to="/404"
+                        >   
+                            <van-image lazy-load :src="item.url" radius="4"/>
+                            <div class="item-title">{{ item.key }}</div>
+                            <div class="item-intro">{{ item.intro }}</div>
+                        </van-cell>
                     </div>
-                </div>
                 </van-list>
             </div>
             <van-back-top right="5vw" bottom="10vh" style="background-color: #E73B8C;"/>
@@ -263,12 +263,13 @@
         background-color: #FFF     
     } 
     .item-title {
-        margin-left: 10px;
+        text-align: left;
         font-size: 16px;
+        color: black;
     }
     .item-intro{
+        text-align: left;
         padding-bottom: 4px;
-        margin-left: 12px;
         font-size: 14px;
     }
     :root:root {

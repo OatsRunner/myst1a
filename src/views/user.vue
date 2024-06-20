@@ -19,32 +19,37 @@
             <div class="top">
                 <div class="msg" style="background-color: #FFF;">
                     <van-cell-group>
-                        <van-rou>
-                            <van-col span="8">
-                                <img @click="$router.push('/404')" alt="avater" :src="userInfo.photo"/>
+                        <van-row>
+                            <img @click="$router.push('/404')" alt="avater" :src="userInfo.photo"
+                                style="margin:8px;float:left;width: 64px;height: 64px"/>
+                            <div style="margin-left: 12px;margin-top: 8px">
                                 <div class="name">{{ userInfo.name }}</div>
-                            </van-col>
-                            <van-col span="8">
-                                <span style="margin-left:24px;">Lv:{{ userInfo.level }}</span>
-                                <span style="margin-left:24px;">uid:{{ userInfo.uid }}</span>
-                            </van-col>
-                        </van-rou>
+                                <span style="">uid:{{ userInfo.uid }}</span>
+                                <span style="margin-left:24px;color: #DC6683;">Lv:{{ userInfo.level }}</span>
+                            </div>
+                        </van-row>
                     </van-cell-group>
                 </div>
                 <div class="other">
                     <van-cell-group>
                         <van-row justify="center">
                             <van-col span="8">
+                                <van-cell to="/404">
                                     <div class="count">{{userInfo.moments_count}}</div>
                                     <div class="txt">动态</div>
+                                </van-cell>
                             </van-col>
                             <van-col span="8">
+                                <van-cell to="/404">
                                     <div class="count">{{userInfo.follow_count}}</div>
                                     <div class="txt">关注</div>
+                                </van-cell>
                             </van-col>
                             <van-col span="8">
+                                <van-cell to="/404">
                                     <div class="count">{{userInfo.fans_count}}</div>
                                     <div class="txt">粉丝</div>
+                                </van-cell>
                             </van-col>
                         </van-row>                        
                     </van-cell-group>
@@ -55,15 +60,17 @@
             <van-grid :column-num="3">
             <van-grid-item icon="star-o" text="我的收藏" is-link to="/404"/>
             <van-grid-item icon="clock-o" text="浏览历史" is-link to="/404"/>
-            <van-grid-item icon="orders-o" text="编辑记录" is-link to="/404"/>
+            <van-grid-item icon="orders-o" text="编辑记录" />
             </van-grid>
             <!-- 信息区域 -->
             <van-cell-group>
-            <van-cell title="消息通知" is-link to="/404" />
-            <van-cell title="用户反馈" is-link to="/404" />
-            <van-cell title="消息通知" is-link to="/404" />
-            <van-cell title="用户反馈" is-link to="/404" />
+                <van-cell title="消息通知" is-link to="/404" />
+                <van-cell title="账户设置" is-link to="/404" />
+                <van-cell title="系统设置" is-link to="/404" />
+                <van-cell title="用户反馈" is-link to="/404" />
             </van-cell-group>
+        
+            <van-cell title="退出登录" is-link to="/404" style="background-color: #E73B8C;color:white"/>
         </div>
 
     </body>
@@ -92,11 +99,12 @@
 
 <script setup lang='ts'>
 
-    import { useRouter } from 'vue-router';
-    import { reactive, onMounted } from 'vue';
-    import statusBar from '../components/statusBar.vue';
-    import { ref } from 'vue';
-    import axios from 'axios';
+    import { useRouter } from 'vue-router'
+    import { reactive, onMounted,computed } from 'vue'
+    import statusBar from '../components/statusBar.vue'
+    import { ref } from 'vue'
+    import { useUserStore } from '@/stores/user'
+    import axios from 'axios'
 
     import activehomeIcon from '@/assets/static/homeIconActive.svg'
     import inactivehomeIcon from '@/assets/static/homeIconInactive.svg'
@@ -127,40 +135,25 @@
     history.back();
     }
 
-    const userInfo = reactive({
-        name: 'default',
-        photo: '',
-        uid:'0',
-        level:'0',
-        moments_count: 0,
-        follow_count: 0,
-        fans_count: 0
-    });
-
-    const fetchUserInfo = async () => {
-        try {
-            const response = await axios.get('http://localhost:8080/api/userinfo');
-            Object.assign(userInfo, response.data);
-        } catch (error) {
-            console.error('Error fetching user info:', error);
-        }
-    };
+    const userStore = useUserStore();
+    const userInfo = computed(() => userStore.userInfo);
 
     onMounted(() => {
-        fetchUserInfo();
+        userStore.fetchUserInfo(); // 在组件挂载时获取用户信息
     });
 </script>
 
 <style>
     .name{
-        margin-top:4px;
-        float:right;
-        font-family: 'SF-Pro';
+        float:top;
+        font-family: 'sans-serif';
         vertical-align:bottom;
         justify-content:center;
-        font-size: 20px;
+        font-size: 23px;
+        font-weight: 900;
     }
     .count{
+        color: #DC6683;
         margin-top:4px;
         display: flex;
         vertical-align:bottom;
@@ -168,6 +161,7 @@
         font-size: 18px;
     }
     .txt{
+        color:#DC6683;
         display: flex;
         justify-content:center;
         margin-bottom:4px;
