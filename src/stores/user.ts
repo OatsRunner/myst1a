@@ -17,12 +17,14 @@ interface User {
 interface UserState {
   users: User[];
   currentUser: User | null;
+  isLoggedIn: boolean;
 }
 
 export const useUserStore = defineStore('user', {
   state: (): UserState => ({
     users: [],
     currentUser: null,
+    isLoggedIn: false,
   }),
   actions: {
     async fetchUsers() {
@@ -42,6 +44,7 @@ export const useUserStore = defineStore('user', {
       if (user) {
         this.currentUser = user;
         user.active = true; // 设置用户为激活状态
+        this.isLoggedIn = true;
         return true;
       } else {
         alert('账号或密码错误');
@@ -53,6 +56,7 @@ export const useUserStore = defineStore('user', {
         this.currentUser.active = false; // 设置用户为非激活状态
       }
       this.currentUser = null;
+      this.isLoggedIn = false;
     },
   },
 });

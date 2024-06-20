@@ -12,15 +12,15 @@
     "active":false
   },
   {
-    "name": "安和昴2",
-    "photo": "https://img.moegirl.org.cn/common/thumb/2/2e/GBC_thum_subaru.png/90px-GBC_thum_subaru.png",
+    "name": "井芹仁菜",
+    "photo": "https://img.moegirl.org.cn/common/thumb/4/43/GBC_thum_nina.png/90px-GBC_thum_nina.png",
     "uid": "2",
-    "level": "0",
+    "level": "1",
     "moments_count": 5,
     "follow_count": 20,
     "fans_count": 100,
-    "account": "test2",
-    "password": "123456",
+    "account": "nina",
+    "password": "nina",
     "active":false
   }
 ]

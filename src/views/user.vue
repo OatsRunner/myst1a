@@ -55,7 +55,7 @@
         <van-grid :column-num="3">
           <van-grid-item icon="star-o" text="我的收藏" is-link to="/404"/>
           <van-grid-item icon="clock-o" text="浏览历史" is-link to="/404"/>
-          <van-grid-item icon="orders-o" text="编辑记录"/>
+          <van-grid-item icon="orders-o" text="编辑记录"is-link to="/404"/>
         </van-grid>
         <!-- 信息区域 -->
         <van-cell-group>
@@ -104,6 +104,7 @@
   
   import activeuserIcon from '@/assets/static/userIconActive.png';
   import inactiveuserIcon from '@/assets/static/userIconInactive.png';
+import router from '@/router';
   
   const searchvalue = ref('');
   const active = ref(2);
@@ -128,8 +129,13 @@
   const userInfo = computed(() => userStore.currentUser);
   
   const logout = () => {
-    userStore.logout();
-    useRouter().push('/login');
+    if(userInfo.value?.active){
+        userStore.logout();
+        router.push('/home');
+    }
+    else{
+        alert('账户未登录');
+    }
   };
   
   onMounted(() => {
