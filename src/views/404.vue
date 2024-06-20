@@ -20,6 +20,9 @@
             <div style="width: 100%;text-align: center;color:#39C5BB;font-size: xx-large">啊哦，页面还在开发中喵</div>
         </van-row>
         <div style="margin-top:196px">
+            <a href="https://github.com/OatsRunner/myst1a">
+            <img alt="github" src='../assets/static/github-fill.svg'style="display:flex;margin:auto;width: 32px;margin-bottom: 16px">
+            </a>
             <button @click="returnHome" style="display:flex;margin:auto;color:#E73B8C;font-size: 18px;text-decoration: underline">返回首页</button>
         </div>
     </body>
@@ -30,6 +33,7 @@
   import { reactive, onMounted } from 'vue';
   import statusBar from '../components/statusBar.vue';
   import { ref } from 'vue';
+
   
   const props = defineProps({});
   

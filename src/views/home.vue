@@ -14,11 +14,12 @@
         />
     </header>
     <body>
-        <van-tabs v-model:active="active">
+        <van-tabs v-model:active="active" color=#DC6683>
             <van-tab title="推荐">
                 <div class="swipe">
-                <van-swipe class="swipe1" :autoplay="2000" indicator-color="white">
-                    <van-swipe-item>
+                <van-swipe class="swipe1" :autoplay="2000" indicator-color="white"
+                :stop-propagation="false" >
+                    <van-swipe-item @click="goto">
                         <van-cell-group inset>
                             <van-image
                             display:flex
@@ -32,7 +33,7 @@
                             </van-cell-group>
                         </van-cell-group>
                     </van-swipe-item>
-                    <van-swipe-item>
+                    <van-swipe-item @click="goto">
                         <van-cell-group inset>
                             <van-image
                             display:flex
@@ -46,7 +47,7 @@
                             </van-cell-group>
                         </van-cell-group>
                     </van-swipe-item>
-                    <van-swipe-item>
+                    <van-swipe-item @click="goto">
                         <van-cell-group inset>
                             <van-image
                             display:flex
@@ -132,6 +133,7 @@
 
     import activeuserIcon from '@/assets/static/userIconActive.png'
     import inactiveuserIcon from '@/assets/static/userIconInactive.png'
+import router from '@/router';
     
     const searchvalue=ref('')
 
@@ -221,6 +223,10 @@
       loading.value = true;
       onLoad();
     };
+
+    const goto=()=>{
+        router.push('/404');
+    }
 
 </script>
 

@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
+import { showSuccessToast, showFailToast } from 'vant';
+
 
 interface User {
   name: string;
@@ -46,9 +48,12 @@ export const useUserStore = defineStore('user', {
         user.active = true; // 设置用户为激活状态
         this.isLoggedIn = true;
         return true;
-      } else {
-        alert('账号或密码错误');
-        return false;
+      } 
+      else if(account == ""||password == ""){
+        showFailToast('账号或密码不得为空');
+      }
+      else {
+        showFailToast('账号或密码错误');
       }
     },
     logout() {

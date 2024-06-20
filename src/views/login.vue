@@ -2,9 +2,6 @@
   <statusBar/>
   <div style="height: 54px;"></div>
   <header style="width: 393px;height: 60px;flex-shrink: 0;background: #FFF;box-shadow: 0px 0px 1px 0px rgba(0, 2, 0, 0.25);">
-    <!-- <button @click="comeBackCompany" style="display: table-cell;vertical-align: middle;">
-      <img class="returnButton" alt="return" src="../assets/static/Return.svg" />
-    </button> -->
     <van-nav-bar
     title=""
     left-text="返回"
@@ -41,7 +38,7 @@
 import { useRouter } from 'vue-router';
 import { ref, onMounted } from 'vue';
 import { useUserStore } from '../stores/user';
-
+import { showToast } from 'vant';
 import statusBar from '@/components/statusBar.vue';
 
 const account = ref('');

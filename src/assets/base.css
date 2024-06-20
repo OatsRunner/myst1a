@@ -59,6 +59,10 @@
 }
 
 body {
+  background-image: url('@/assets/static/background.png');
+  background-size:cover;
+  background-attachment:fixed;
+  width: 393px;
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
