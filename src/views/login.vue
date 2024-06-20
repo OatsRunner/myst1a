@@ -43,8 +43,6 @@ import { reactive, onMounted } from 'vue';
 import statusBar from '../components/statusBar.vue';
 import { ref } from 'vue';
 
-import { mapGetters, mapActions } from 'vuex'
-
 const props = defineProps({});
 
 const data = reactive({});
@@ -56,8 +54,8 @@ const onClickReturn = () =>{
 }
 
 let login = () => {
-  console.log("account:"+account.value);
-  console.log("password:"+password.value);
+  // console.log("account:"+account.value);
+  // console.log("password:"+password.value);
   if(account.value=="test1"&&password.value=="123456"){
     router.push('/home')
   }

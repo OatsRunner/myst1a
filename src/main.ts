@@ -11,9 +11,7 @@ import 'element-plus/dist/index.css'
 
 import Vant from 'vant';
 import { Lazyload } from 'vant';
-import { BackTop } from 'vant';
 import 'vant/lib/index.css';
-
 
 //引入createapp创建应用
 const app = createApp(App)
@@ -25,8 +23,6 @@ app.use(router)
 app.use(Vant)
 app.use(ElementPlus)
 app.use(Lazyload);
-app.use(BackTop);
-
 
 app.mount('#app')
 

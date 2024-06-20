@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import login from '@/views/login.vue'
 import home from '@/views/home.vue'
 import Page404 from '@/views/404.vue'
+import user from '@/views/user.vue'
 
 const router = createRouter({
   //路由工作模式
@@ -24,6 +25,11 @@ const router = createRouter({
       path: '/404',
       name: 'Page404',
       component: Page404
+    },
+    {
+      path: '/user',
+      name: 'user',
+      component: user
     },
   ]
 })

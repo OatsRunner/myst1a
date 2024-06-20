@@ -14,7 +14,9 @@
         />
     </header>
     <body>
-        <div class="swipe">
+        <van-tabs v-model:active="active">
+            <van-tab title="推荐">
+                <div class="swipe">
                 <van-swipe class="swipe1" :autoplay="2000" indicator-color="white">
                     <van-swipe-item>
                         <van-cell-group inset>
@@ -60,26 +62,34 @@
                     </van-swipe-item>
                 </van-swipe>
             </div>
-        <div class="exhibition">
-            <van-list
-            v-model:loading="loading"
-            :finished="finished"
-            finished-text="没有更多了"
-            @load="onLoad"
-            >
-            <div class="water-fall">
-                <div inset size="large" class="list_item" v-for="(item, index) of list" :key="index" 
-                style="margin-bottom: 10px;
-                border-radius: 4px;"
+            <div class="exhibition">
+                <van-list
+                v-model:loading="loading"
+                :finished="finished"
+                finished-text="没有更多了"
+                @load="onLoad"
                 >
-                <van-image lazy-load :src="item.url" />
-                <div class="item-title">{{ item.key }}</div>
-                <div class="item-intro">{{ item.intro }}</div>
+                    <div class="water-fall">
+                        <div inset size="large" class="list_item" v-for="(item, index) of list" :key="index" 
+                        style="margin-bottom: 10px;
+                        border-radius: 4px;"
+                        >
+                        <van-image lazy-load :src="item.url" />
+                        <div class="item-title">{{ item.key }}</div>
+                        <div class="item-intro">{{ item.intro }}</div>
+                    </div>
+                </div>
+                </van-list>
             </div>
-            </div>
-            </van-list>
-            <van-back-top/>
-        </div>
+            <van-back-top right="5vw" bottom="10vh" style="background-color: #E73B8C;"/>
+            </van-tab>
+            <van-tab title="最新" >404</van-tab>
+            <van-tab title="热榜" >404</van-tab>
+            <van-tab title="订阅" disabled>订阅</van-tab>
+            <van-tab title="收藏夹" disabled>收藏夹</van-tab>
+        </van-tabs>
+
+        
     </body>
 
     <van-tabbar v-model="active" route style="width: 393px;">
@@ -95,7 +105,7 @@
             <img :src="props.active ? iconShop.active : iconShop.inactive" />
             </template>
         </van-tabbar-item>
-        <van-tabbar-item to="/login">
+        <van-tabbar-item to="/user">
             <span>我的</span>
             <template #icon="props">
             <img :src="props.active ? iconUser.active : iconUser.inactive" />
@@ -235,9 +245,9 @@
         padding: 10px; /* Optional: Add padding for better layout */
         padding-bottom:60px ;
     }
-    .swipe1 .van-swipe-item {
+    /* .swipe1 .van-swipe-item {
 
-    }
+    } */
     .water-fall {
         padding-top: 10px;
         column-count: 2;

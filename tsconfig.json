@@ -7,8 +7,14 @@
     {
       "path": "./tsconfig.app.json"
     }
-  ]
-  
+  ],
+  "compilerOptions": {
+    "paths": {
+      "@": ["./src"],
+      "@/*": ["./src/*"]
+    },
+  }
+
 }
 
   
