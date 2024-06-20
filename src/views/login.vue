@@ -39,31 +39,31 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import { reactive, onMounted } from 'vue';
-import statusBar from '../components/statusBar.vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useUserStore } from '../stores/user';
 
-const props = defineProps({});
-
-const data = reactive({});
-
-const router = useRouter();
-
-const onClickReturn = () =>{
-  history.back();
-}
-
-let login = () => {
-  // console.log("account:"+account.value);
-  // console.log("password:"+password.value);
-  if(account.value=="test1"&&password.value=="123456"){
-    router.push('/home')
-  }
-}
+import statusBar from '@/components/statusBar.vue';
 
 const account = ref('');
 const password = ref('');
 
+const router = useRouter();
+const userStore = useUserStore();
+
+const onClickReturn = () => {
+  history.back();
+}
+
+const login = async () => {
+  const success = await userStore.login(account.value, password.value);
+  if (success) {
+    router.push('/user');
+  }
+};
+
+onMounted(() => {
+  userStore.fetchUsers();
+});
 </script>
 
 

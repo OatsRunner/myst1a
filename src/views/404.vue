@@ -23,27 +23,6 @@
             <button @click="returnHome" style="display:flex;margin:auto;color:#E73B8C;font-size: 18px;text-decoration: underline">返回首页</button>
         </div>
     </body>
-
-    <van-tabbar v-model="active" route style="width: 393px;">
-        <van-tabbar-item to="/home">
-            <span>首页</span>
-            <template #icon="props">
-            <img :src="props.active ? iconHome.active : iconHome.inactive" />
-            </template>
-        </van-tabbar-item>
-        <van-tabbar-item to="/404">
-            <span>商店</span>
-            <template #icon="props">
-            <img :src="props.active ? iconShop.active : iconShop.inactive" />
-            </template>
-        </van-tabbar-item>
-        <van-tabbar-item to="/user">
-            <span>我的</span>
-            <template #icon="props">
-            <img :src="props.active ? iconUser.active : iconUser.inactive" />
-            </template>
-        </van-tabbar-item>
-    </van-tabbar>
   </template>
   
   <script setup lang="ts">
@@ -63,7 +42,7 @@
   }
 
   const returnHome = () =>{
-    router.push('/user');
+    router.push('/home');
   }
   
   import activehomeIcon from '@/assets/static/homeIconActive.svg'
