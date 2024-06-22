@@ -154,7 +154,7 @@ import router from '@/router';
     const loading = ref(false);
     const finished = ref(false);
 
-    const list = ref([]);
+    const list :any=ref([]);
 
 const fetchListData = async () => {
   try {
