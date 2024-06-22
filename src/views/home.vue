@@ -26,7 +26,7 @@
                             width="360"
                             height="160"
                             fit="cover"
-                            src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" 
+                            src="https://moegirl.icu/media/%E4%B9%89%E7%9C%BC%E4%B8%81%E7%9C%9F.jpg" 
                             />
                             <van-cell-group  class="van-ellipsis">
                             <van-cell title="什么是「oo丁真，鉴定为xx」"  label="「一眼丁真」系列用語，衍生自貼吧流行的「一眼真」、「一眼假」等簡明回復，指的是對網絡上所充斥着的各種真假信息的快速辨別。因為疫情期間一系列魔幻現實主義事件的上演，常常會有網友出於寧可信其有的心態，用「一眼真」來評價此類事件，以表達對現實中魔幻事件的諷刺。" size="large"/>
@@ -75,9 +75,9 @@
                         style="margin-bottom: 10px;
                         border-radius: 8px;" to="/404"
                         >   
-                            <van-image lazy-load :src="item.url" radius="4"/>
-                            <div class="item-title">{{ item.key }}</div>
-                            <div class="item-intro">{{ item.intro }}</div>
+                            <van-image position="center" lazy-load :src="item?.url" radius="4"/>
+                            <div class="item-title">{{ item?.key }}</div>
+                            <div class="item-intro">{{ item?.intro }}</div>
                         </van-cell>
                     </div>
                 </van-list>
@@ -120,8 +120,8 @@
 
     import { useRouter } from 'vue-router';
     import { reactive, onMounted } from 'vue';
-
     import { ref } from 'vue';
+    import axios from'axios';
 
     import statusBar from '@/components/statusBar.vue';
 
@@ -151,78 +151,39 @@ import router from '@/router';
       inactive:inactiveuserIcon,
     };
 
-    const list = ref([
-  {
-    url: 'https://placekitten.com/400/300',
-    key: '芝士雪豹',
-    intro:'人们依然爱我爱我纯真双眼'
-  },
-  {
-    url: 'https://placekitten.com/400/300',
-    key: '芝士猫咪',
-    intro:'人们依然爱我爱我纯真双眼'
-  },
-  {
-    url: 'https://placekitten.com/400/300',
-    key: '芝士獐子',
-    intro:'人们依然爱我爱我纯真双眼'
-  },
-  {
-    url: 'https://placekitten.com/400/300',
-    key: '芝士猞猁',
-    intro:'人们依然爱我爱我纯真双眼'
-  }
-])
     const loading = ref(false);
     const finished = ref(false);
 
-    const onLoad = () => {
-      // 异步更新数据
-      // setTimeout 仅做示例，真实场景中一般为 ajax 请求
-      setTimeout(() => {
-    // 获取更多的图片数据，追加到列表中
-        for (let i = 0; i < 5; i++) {
-            list.value.push({
-            url: 'https://placekitten.com/400/300',
-            key: '芝士王源子',
-        intro:'人们依然爱我爱我纯真双眼'
-        },
-        {
-            url: 'https://placekitten.com/400/300',
-            key: '锐克5代',
-            intro:'人们依然爱我爱我纯真双眼'
-        },
-        {
-            url: 'https://placekitten.com/400/300',
-            key: '芝士珍珠',
-            intro:'人们依然爱我爱我纯真双眼'
-        },
-        {
-            url: 'https://placekitten.com/400/300',
-            key: '是妈妈省的',
-            intro:'人们依然爱我爱我纯真双眼'
-        })
-            }
+    const list = ref([]);
 
-            // 加载状态结束
-            loading.value = false
+const fetchListData = async () => {
+  try {
+    const response = await axios.get('../../public/waterfall.json');
+    list.value = response.data;
+  } catch (error) {
+    console.error('Error fetching list data:', error);
+  }
+};
 
-            // 数据全部加载完成
-            if (list.value.length >= 40) {
-            finished.value = true
-            }
-        }, 1000)
-    };
+const onLoad = () => {
+  loading.value = true;
+  setTimeout(() => {
+    fetchListData();
+    loading.value = false;
+    finished.value = list.value.length >= 10;
+  }, 1000);
+};
 
-    const onRefresh = () => {
-      // 清空列表数据
-      finished.value = false;
+onMounted(() => {
+  onLoad();
+});
 
-      // 重新加载数据
-      // 将 loading 设置为 true，表示处于加载状态
-      loading.value = true;
-      onLoad();
-    };
+const onRefresh = () => {
+  finished.value = false;
+  loading.value = true;
+  onLoad();
+};
+
 
     const goto=()=>{
         router.push('/404');
@@ -247,13 +208,11 @@ import router from '@/router';
         margin-top: 10px;
     }
     .exhibition{
-        overflow-y: auto; /* Ensure the container is scrollable */
-        padding: 10px; /* Optional: Add padding for better layout */
+        overflow-y: auto; 
+        padding: 10px; 
         padding-bottom:60px ;
     }
-    /* .swipe1 .van-swipe-item {
 
-    } */
     .water-fall {
         padding-top: 10px;
         column-count: 2;
